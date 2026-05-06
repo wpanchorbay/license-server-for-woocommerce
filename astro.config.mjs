@@ -5,15 +5,20 @@ import sitemap from '@astrojs/sitemap';
 import starlight from '@astrojs/starlight';
 import { BASE_PATH, REPO_URL, SITE_ORIGIN } from './site-config.mjs';
 
+const srcDir = fileURLToPath(new URL('./src', import.meta.url));
+const customIconPath = fileURLToPath(new URL('./src/components/starlight/Icon.astro', import.meta.url));
+
 // https://astro.build/config
 export default defineConfig({
 	site: SITE_ORIGIN,
 	base: BASE_PATH,
 	vite: {
 		resolve: {
-			alias: {
-				'~': fileURLToPath(new URL('./src', import.meta.url)),
-			},
+			alias: [
+				{ find: '~', replacement: srcDir },
+				{ find: '@astrojs/starlight/user-components/Icon.astro', replacement: customIconPath },
+				{ find: '../user-components/Icon.astro', replacement: customIconPath },
+			],
 		},
 	},
 	integrations: [
@@ -27,6 +32,7 @@ export default defineConfig({
 				SiteTitle: './src/components/SiteTitle.astro',
 				ThemeProvider: './src/components/ThemeProvider.astro',
 				ThemeSelect: './src/components/ThemeSelect.astro',
+				LanguageSelect: './src/components/starlight/LanguageSelect.astro',
 			},
 			head: [
 				{ tag: 'link', attrs: { rel: 'icon', href: `${BASE_PATH}/assets/favicon.ico` } },
