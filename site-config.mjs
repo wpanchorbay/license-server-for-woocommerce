@@ -1,5 +1,5 @@
 export const SITE_ORIGIN =
-	process.env.SITE_ORIGIN || process.env.PUBLIC_SITE_ORIGIN || 'https://wpanchorbay.github.io';
+	process.env.SITE_ORIGIN || process.env.PUBLIC_SITE_ORIGIN || 'https://docs.wpanchorbay.com';
 
 export const BASE_PATH = '/license-server-for-woocommerce';
 
