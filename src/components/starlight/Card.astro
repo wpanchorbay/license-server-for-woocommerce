@@ -4,25 +4,41 @@ import Icon from './Icon.astro';
 interface Props {
 	icon?: string;
 	title: string;
+	href?: string;
 }
 
-const { icon, title } = Astro.props;
+const { icon, title, href } = Astro.props;
+const Tag = href ? 'a' : 'article';
 ---
 
-<article class="license-card sl-flex">
-	<p class="title sl-flex">
-		{icon && <span class="icon-shell"><Icon name={icon} class="icon" size="1.1em" /></span>}
-		<span set:html={title} />
-	</p>
-	<div class="body"><slot /></div>
-</article>
+<Tag class:list={['license-card-link', href && 'is-link']} href={href}>
+	<article class="license-card sl-flex">
+		<p class="title sl-flex">
+			{icon && <span class="icon-shell"><Icon name={icon} class="icon" size="1.1em" /></span>}
+			<span set:html={title} />
+		</p>
+		<div class="body"><slot /></div>
+	</article>
+</Tag>
 
 <style>
 	@layer starlight.components {
+		.license-card-link {
+			display: block;
+			height: 100%;
+			color: inherit;
+			text-decoration: none;
+		}
+
+		.license-card-link:where(:hover, :focus-visible) {
+			text-decoration: none;
+		}
+
 		.license-card {
 			--license-card-accent: #5865f2;
 			position: relative;
 			overflow: hidden;
+			height: 100%;
 			border: 1px solid color-mix(in srgb, var(--license-card-accent) 20%, var(--sl-color-hairline));
 			border-radius: 1.1rem;
 			background:
@@ -41,7 +57,9 @@ const { icon, title } = Astro.props;
 			transition:
 				transform 180ms ease,
 				border-color 180ms ease,
-				box-shadow 180ms ease;
+				box-shadow 180ms ease,
+				background 180ms ease;
+			will-change: transform;
 		}
 
 		.license-card::before {
@@ -64,11 +82,22 @@ const { icon, title } = Astro.props;
 			--license-card-accent: #d9485f;
 		}
 
-		.license-card:hover {
+		.license-card-link.is-link:where(:hover, :focus-visible) .license-card {
 			transform: translateY(-3px);
 			border-color: color-mix(in srgb, var(--license-card-accent) 38%, var(--sl-color-hairline));
 			box-shadow:
 				0 1px 0 color-mix(in srgb, #fff 70%, transparent) inset,
+				0 20px 40px color-mix(in srgb, var(--license-card-accent) 14%, transparent);
+		}
+
+		.license-card-link.is-link:focus-visible {
+			outline: none;
+		}
+
+		.license-card-link.is-link:focus-visible .license-card {
+			box-shadow:
+				0 0 0 3px color-mix(in srgb, var(--license-card-accent) 22%, transparent),
+				0 0 0 1px color-mix(in srgb, var(--license-card-accent) 48%, transparent),
 				0 20px 40px color-mix(in srgb, var(--license-card-accent) 14%, transparent);
 		}
 
