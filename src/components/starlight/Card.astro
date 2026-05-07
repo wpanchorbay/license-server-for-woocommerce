@@ -8,10 +8,17 @@ interface Props {
 }
 
 const { icon, title, href } = Astro.props;
+const isExternal = href?.startsWith('http');
 const Tag = href ? 'a' : 'article';
 ---
 
-<Tag class:list={['license-card-link', href && 'is-link']} href={href}>
+<Tag 
+	class:list={['license-card-link', href && 'is-link']} 
+	href={href}
+	target={isExternal ? '_blank' : undefined}
+	rel={isExternal ? 'noopener noreferrer' : undefined}
+>
+
 	<article class="license-card sl-flex">
 		<p class="title sl-flex">
 			{icon && <span class="icon-shell"><Icon name={icon} class="icon" size="1.1em" /></span>}
