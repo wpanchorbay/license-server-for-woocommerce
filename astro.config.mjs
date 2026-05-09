@@ -33,6 +33,7 @@ export default defineConfig({
 				ThemeProvider: './src/components/ThemeProvider.astro',
 				ThemeSelect: './src/components/ThemeSelect.astro',
 				LanguageSelect: './src/components/starlight/LanguageSelect.astro',
+				SocialIcons: './src/components/starlight/SocialIcons.astro',
 			},
 			head: [
 				{ tag: 'link', attrs: { rel: 'icon', href: `${BASE_PATH}/assets/favicon.ico` } },
