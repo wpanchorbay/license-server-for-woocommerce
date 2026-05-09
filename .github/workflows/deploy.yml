@@ -41,7 +41,7 @@ jobs:
           enablement: true
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install --frozen-lockfile --allow-scripts
 
       - name: Build site
         run: pnpm run build
