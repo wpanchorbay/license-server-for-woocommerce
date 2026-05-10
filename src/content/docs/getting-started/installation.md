@@ -27,4 +27,4 @@ bun run build
 bun run package-plugin
 ```
 
-The production release zip is created from the plugin repository packaging workflow, not from this docs site.
+The production release, an installable **zip** file, is created from the plugin repository's packaging workflow (not from this docs site).
