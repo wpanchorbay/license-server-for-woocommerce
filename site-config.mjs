@@ -6,7 +6,7 @@ export const BASE_PATH = '/license-server-for-woocommerce';
 export const REPO_URL =
 	process.env.DOCS_REPO_URL || 'https://github.com/wpanchorbay/license-server-for-woocommerce';
 
-export const LOGO_SVG_PATH = './src/assets/wpanchorbay-icon.svg';
+export const LOGO_SVG_PATH = './src/assets/license-server-logo-inner-accent.svg';
 
 export function buildAbsoluteUrl(pathname = '/') {
 	const normalizedPath = pathname.startsWith('/') ? pathname : `/${pathname}`;

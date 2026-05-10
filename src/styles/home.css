@@ -222,12 +222,14 @@ html[data-has-hero] body {
 
 /* ── Standard Docs Page Layout (Non-Index) ── */
 :root:not([data-has-hero]) {
-	--sl-content-width: 62rem; /* ~992px */
+	--sl-content-width: 62rem;
+	/* ~992px */
 }
 
 @media (min-width: 72rem) {
 	:root:not([data-has-hero]) .right-sidebar {
-		--sl-sidebar-width: 15rem; /* Reduced from 18.75rem to give more room to content */
+		--sl-sidebar-width: 15rem;
+		/* Reduced from 18.75rem to give more room to content */
 	}
 }
 
@@ -443,4 +445,8 @@ html[data-has-hero] body {
 :root[data-theme='dark'] .pagination-links a:hover {
 	background-color: color-mix(in srgb, #1d2b57 70%, #7a8dff 30%);
 	border-color: color-mix(in srgb, #8ea2ff 40%, transparent);
+}
+
+.site-title:hover {
+	text-decoration: none !important;
 }
